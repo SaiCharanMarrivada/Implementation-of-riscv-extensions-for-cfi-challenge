@@ -83,7 +83,7 @@ async def test_jump_then_mismatching_lpad_enters_error(dut):
 
     await send_packet(dut, SET, 0x00C0DE)
     await send_packet(dut, JUMP)
-    await send_packet(dut, LPAD, 0x00CAFE)
+    await send_packet(dut, LPAD, 0xBADBAD)
     assert dut.state.value.to_unsigned() == ERROR
 
 
@@ -156,6 +156,7 @@ async def test_error_state_absorbs_all_packets(dut):
     await send_packet(dut, LPAD, 0x654321)
     assert dut.state.value.to_unsigned() == ERROR
 
+    # the DUT should stay in the error state once it gets into error state
     for command, data in ((SET, 0x123456), (JUMP, 0), (LPAD, 0), (0xFF, 0xABCDEF)):
         await send_packet(dut, command, data)
         assert dut.state.value.to_unsigned() == ERROR

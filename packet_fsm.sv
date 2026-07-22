@@ -4,6 +4,7 @@ typedef enum logic [1:0] {
     ERROR
 } State;
 
+
 module packet_fsm (
     input logic clk,
     input logic reset,
