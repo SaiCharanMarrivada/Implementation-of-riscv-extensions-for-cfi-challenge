@@ -20,42 +20,34 @@ module packet_fsm (
     assign command = packet[31:24];
     assign data = packet[23:0];
 
-    State next_state;
-
-    always_comb begin
-        next_state = state;
-
-        case (state)
-            IDLE: begin
-                if (command == JUMP) begin
-                    next_state = CHECK;
-                end
-            end
-            CHECK: begin
-                if ((command == LPAD) && (data == label)) begin
-                    next_state = IDLE;
-                end else begin
-                    next_state = ERROR;
-                end
-            end
-            ERROR: begin
-                next_state = ERROR;
-            end
-            default: begin
-                next_state = ERROR;
-            end
-        endcase
-    end
-
     always_ff @(posedge clk) begin
         if (reset) begin
             state <= IDLE;
             label <= 24'd0;
         end else begin
-            state <= next_state;
-            if ((state == IDLE) && (command == SET)) begin
-                label <= data;
-            end
+            case (state)
+                IDLE: begin
+                    if (command == JUMP) begin
+                        state <= CHECK;
+                    end else if (command == SET) begin
+                        state <= IDLE;
+                        label <= data;
+                    end
+                end
+                CHECK: begin
+                    if ((command == LPAD) && (data == label)) begin
+                        state <= IDLE;
+                    end else begin
+                        state <= ERROR;
+                    end
+                end
+                ERROR: begin
+                    state <= ERROR;
+                end
+                default: begin
+                    state <= ERROR;
+                end
+            endcase
         end
     end
 endmodule
