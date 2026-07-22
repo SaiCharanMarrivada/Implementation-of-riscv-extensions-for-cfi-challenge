@@ -17,3 +17,14 @@ Packets other than `JUMP` leave the FSM in `IDLE`, including `SET`, which
 updates the internal label. In `CHECK`, a matching `LPAD` returns to `IDLE`;
 all other packets enter `ERROR`. The `ERROR` state is permanent until reset.
 
+## Dependencies
+The `cocotb` and `verilator` are needed to run the tests.
+
+## How to run the tests
+```bash
+make
+```
+If you want to run the tests with Icarus verilog change the command to
+```bash
+make SIM=icarus
+```
