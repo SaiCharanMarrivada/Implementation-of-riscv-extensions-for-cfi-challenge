@@ -4,15 +4,16 @@
 ## State machine
 ```mermaid
 stateDiagram-v2
+    direction LR
     [*] --> IDLE
 
-    IDLE --> IDLE: SET
     IDLE --> CHECK: JUMP
-    IDLE --> IDLE: other packet
-
-    CHECK --> IDLE: LPAD and data matches label
-    CHECK --> ERROR: otherwise
-
-    ERROR --> ERROR: any packet
+    CHECK --> IDLE: match
+    CHECK --> ERROR: mismatch
+    ERROR --> ERROR: any
 ```
+
+Packets other than `JUMP` leave the FSM in `IDLE`, including `SET`, which
+updates the internal label. In `CHECK`, a matching `LPAD` returns to `IDLE`;
+all other packets enter `ERROR`. The `ERROR` state is permanent until reset.
 
