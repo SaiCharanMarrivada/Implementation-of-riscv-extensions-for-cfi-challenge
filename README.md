@@ -7,9 +7,9 @@ Implement a 3-state FSM in SystemVerilog that accepts a 32-bit packet every cycl
 <picture>
   <source
     media="(prefers-color-scheme: dark)"
-    srcset="fsm_diagram_dark.svg">
+    srcset="fsm_diagram_white.svg">
   <img
-    src="fsm_diagram_white.svg"
+    src="fsm_diagram_dark.svg"
     alt="Packet FSM state transitions">
 </picture>
 
