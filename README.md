@@ -20,7 +20,10 @@ updates the internal label. In `CHECK`, a matching `LPAD` returns to `IDLE`;
 all other packets enter `ERROR`. The `ERROR` state is permanent until reset.
 
 ### Dependencies
-The `cocotb` and `verilator` are needed to run the tests.
+The following dependencies are needed to run the tests.
+- `verilator`
+- `cocotb`
+- `python3`
 
 ### How to run the tests
 ```bash
