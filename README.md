@@ -13,7 +13,7 @@ stateDiagram-v2
     CHECK --> IDLE: match
     CHECK --> ERROR: mismatch
     ERROR --> ERROR: any
-    IDLE --> IDLE: SET/invalid command
+    IDLE --> IDLE: SET/invalid 
 ```
 
 Packets other than `JUMP` leave the FSM in `IDLE`, including `SET`, which
