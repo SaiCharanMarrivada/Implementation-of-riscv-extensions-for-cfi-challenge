@@ -4,7 +4,14 @@
 Implement a 3-state FSM in SystemVerilog that accepts a 32-bit packet every cycle: bits [31:24] represent a command (SET=0x01, JUMP=0x02, LPAD=0x03); bits [23:0] are data. If the FSM is in IDLE state, on SET, store data into the internal “label” register. On JUMP, move to the CHECK state. Otherwise, stay IDLE. If the FSM is in CHECK state, LPAD is received, and the data matches “label”, return to IDLE. Otherwise, move to ERROR. If the FSM reaches the ERROR state, it stays there forever.
 
 ### State machine
-![Packet FSM transitions](fsm_diagram.svg)
+<picture>
+  <source
+    media="(prefers-color-scheme: dark)"
+    srcset="state_diagram_dark.svg">
+  <img
+    src="state_diagram_light.svg"
+    alt="Packet FSM state transitions">
+</picture>
 
 Packets other than `JUMP` leave the FSM in `IDLE`, including `SET`, which
 updates the internal label. In `CHECK`, a matching `LPAD` returns to `IDLE`;
