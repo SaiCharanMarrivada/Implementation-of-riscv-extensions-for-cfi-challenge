@@ -10,6 +10,7 @@ stateDiagram-v2
     [*] --> IDLE
 
     IDLE --> CHECK: JUMP
+    IDLE --> IDLE: SET/invalid command
     CHECK --> IDLE: match
     CHECK --> ERROR: mismatch
     ERROR --> ERROR: any
