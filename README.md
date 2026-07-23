@@ -10,10 +10,10 @@ stateDiagram-v2
     [*] --> IDLE
 
     IDLE --> CHECK: JUMP
-    IDLE --> IDLE: SET/invalid command
     CHECK --> IDLE: match
     CHECK --> ERROR: mismatch
     ERROR --> ERROR: any
+    IDLE --> IDLE: SET/invalid command
 ```
 
 Packets other than `JUMP` leave the FSM in `IDLE`, including `SET`, which
