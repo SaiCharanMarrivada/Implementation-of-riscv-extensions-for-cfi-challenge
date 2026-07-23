@@ -19,7 +19,7 @@ all other packets enter `ERROR`. The `ERROR` state is permanent until reset.
 
 ### Dependencies
 The following dependencies are needed to run the tests.
-- `verilator`
+- `verilator` or any cocotb supported simulator
 - `cocotb`
 - `python3`
 
