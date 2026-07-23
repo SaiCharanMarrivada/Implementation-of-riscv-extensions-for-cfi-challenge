@@ -31,3 +31,4 @@ If you want to run the tests with Icarus verilog change the command to
 ```bash
 make SIM=icarus
 ```
+The Makefile was adapted from the [cocotb first steps](https://docs.cocotb.org/en/development/first_steps.html#building-your-design-and-running-simulations).
